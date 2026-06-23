@@ -5,7 +5,11 @@ class Combine(AnimationGroup):
     def _setup_scene(self, scene: Scene) -> None:
         super()._setup_scene(scene)
         self._scene = scene
-        self._initial_mobjects = {mob: mob.copy() for mob in self.group}
+        self._initial_mobjects = {
+            mob: mob.copy()
+            for mob in self.group
+            if not isinstance(mob, Group | OpenGLGroup)
+        }
 
     def interpolate(self, alpha: float) -> None:
         for mobject, initial_mobject in self._initial_mobjects.items():
