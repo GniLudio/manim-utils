@@ -8,7 +8,7 @@ class Combine(AnimationGroup):
         self._initial_mobjects = {
             mob: mob.copy()
             for mob in self.group
-            if not isinstance(mob, Group | OpenGLGroup)
+            if type(mob).interpolate_color != Mobject.interpolate_color
         }
 
     def interpolate(self, alpha: float) -> None:
